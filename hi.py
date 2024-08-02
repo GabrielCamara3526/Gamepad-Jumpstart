@@ -25,6 +25,7 @@ muted_effects = False
 root = Tk()
 root.geometry("800x600")
 root.title("Gamepad Helper")
+root.configure(bg='#30d30d30d')
 
 # Define StringVars for all entries
 A_var = StringVar(value="l")
@@ -106,8 +107,9 @@ def keys_menu():
     keys_window = Toplevel(root)
     keys_window.title("Keys preference")
     keys_window.geometry("500x300")
+    keys_window.configure(bg='#303030')
 
-    main_frame = Frame(keys_window)
+    main_frame = Frame(keys_window, bg="#303030")
     main_frame.grid(row=0, column=2, sticky='n')
 
     def validate_input(new_value):
@@ -116,61 +118,61 @@ def keys_menu():
     vcmd = keys_window.register(validate_input)
 
     # Define button labels
-    A_label = Label(main_frame, text='A:', font=('Arial', 14))
+    A_label = Label(main_frame, text='A:',bg="#0ec809", font=('Arial', 18))
     A_label.grid(row=0, column=0, padx=10, pady=5, sticky='w')
     
-    B_label = Label(main_frame, text='B:', font=('Arial', 14))
+    B_label = Label(main_frame, text='B:', bg='red', font=('Arial', 18))
     B_label.grid(row=1, column=0, padx=10, pady=5, sticky='w')
     
-    X_label = Label(main_frame, text='X:', font=('Arial', 14))
+    X_label = Label(main_frame, text='X:',bg='blue', font=('Arial', 18))
     X_label.grid(row=2, column=0, padx=10, pady=5, sticky='w')
     
-    Y_label = Label(main_frame, text='Y:', font=('Arial', 14))
+    Y_label = Label(main_frame, text='Y:',bg='yellow', font=('Arial', 18))
     Y_label.grid(row=3, column=0, padx=10, pady=5, sticky='w')
 
     # Define button entry widgets and associate them with StringVar
-    A_entry = Entry(main_frame, width=8,validate="key", validatecommand=(vcmd, '%P'), textvariable=A_var, font=('Helvetica', 18))
+    A_entry = Entry(main_frame, width=8,validate="key", validatecommand=(vcmd, '%P'), textvariable=A_var, font=('Helvetica', 20))
     A_entry.grid(row=0, column=1, padx=10, pady=5)
 
-    B_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=B_var, font=('Helvetica', 18))
+    B_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=B_var, font=('Helvetica', 20))
     B_entry.grid(row=1, column=1, padx=10, pady=5)
 
-    X_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=X_var, font=('Helvetica', 18))
+    X_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=X_var, font=('Helvetica', 20))
     X_entry.grid(row=2, column=1, padx=10, pady=5)
 
-    Y_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=Y_var, font=('Helvetica', 18))
+    Y_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=Y_var, font=('Helvetica', 20))
     Y_entry.grid(row=3, column=1, padx=10, pady=5)
 
     # Define trigger labels
-    LB_label = Label(main_frame, text='LB:', font=('Arial', 14))
+    LB_label = Label(main_frame, text='LB:', bg='#181818', fg='white', font=('Arial', 16))
     LB_label.grid(row=0, column=2, padx=10, pady=5, sticky='w')
     
-    RB_label = Label(main_frame, text='RB:', font=('Arial', 14))
+    RB_label = Label(main_frame, text='RB:', bg='#181818', fg='white', font=('Arial', 16))
     RB_label.grid(row=1, column=2, padx=10, pady=5, sticky='w')
     
-    LT_label = Label(main_frame, text='LT:', font=('Arial', 14))
+    LT_label = Label(main_frame, text='LT:', bg='#181818', fg='white', font=('Arial', 16))
     LT_label.grid(row=2, column=2, padx=10, pady=5, sticky='w')
     
-    RT_label = Label(main_frame, text='RT:', font=('Arial', 14))
+    RT_label = Label(main_frame, text='RT:', bg='#181818', fg='white', font=('Arial', 16))
     RT_label.grid(row=3, column=2, padx=10, pady=5, sticky='w')
 
     # Define Trigger entry widgets and associate them with StringVar
-    LB_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=LB_var, font=('Helvetica', 18))
+    LB_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=LB_var, font=('Helvetica', 20))
     LB_entry.grid(row=0, column=3, padx=10, pady=5)
 
-    RB_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=RB_var, font=('Helvetica', 18))
+    RB_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=RB_var, font=('Helvetica', 20))
     RB_entry.grid(row=1, column=3, padx=10, pady=5)
 
-    LT_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=LT_var, font=('Helvetica', 18))
+    LT_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=LT_var, font=('Helvetica', 20))
     LT_entry.grid(row=2, column=3, padx=10, pady=5)
 
-    RT_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=RT_var, font=('Helvetica', 18))
+    RT_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=RT_var, font=('Helvetica', 20))
     RT_entry.grid(row=3, column=3, padx=10, pady=5)
 
     bottom_frame = Frame(keys_window)
     bottom_frame.grid(row=4, column=2, pady=45, padx=45)
 
-    set_default = Button(bottom_frame, text='Set Default', font=('Helvetica', 14), command=default_keys)
+    set_default = Button(bottom_frame, text='Set Default', font=('Helvetica', 14, 'bold'), command=default_keys)
     set_default.grid()
 
 # Create the top frame to hold the set keys button
@@ -178,22 +180,28 @@ top_frame = Frame(root)
 top_frame.pack(side='top', anchor='e')
 
 # Create the set keys button and place it in the top frame
-set_keys = Button(top_frame, text='Set Keys', font=('Roboto', 18), command=keys_menu)
+set_keys = Button(top_frame, text='Set Keys', font=('Roboto', 18), bg='#0474ba', command=keys_menu)
 set_keys.pack(side='right')
 
 # Create the points label and place it in the main window
-points_label = Label(root, text='0', font=('Roboto', 28))
+points_label = Label(root, text='0', font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=0, highlightthickness=0)
 points_label.pack(anchor='center', side='top')
 
 # Create the mute button and place it in the main window
 mute_button = Button(root, text='Mute 🔊', font=('Roboto', 28),
-                     width=13, height=2,bg='#34b4eb', command=mute_unmute)
+                     width=13, height=2, command=mute_unmute, bg='#995900', bd=0, 
+                     highlightthickness=0, 
+                     relief='flat', activebackground='#982800')
 mute_button.pack(side='bottom')
 
 # Create the game button with an initial random gamepad button and place it in the main window
 initial_button = choice(gamepad_buttons)
 initial_fgcolor = "white"
-game_button = Button(root, text=initial_button, font=('Helvetica', 24), bg=gamepad_colors[initial_button], fg=initial_fgcolor, height=7, width=16, command=new_game_button)
+
+game_button = Button(root, text=initial_button, font=('Helvetica', 24), 
+                     bg=gamepad_colors[initial_button], 
+                     fg=initial_fgcolor, height=7, width=16, command=new_game_button, 
+                     bd=0, highlightthickness=0)
 game_button.pack(side='bottom', pady=10)
 
 # Call function to set initial background color
