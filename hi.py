@@ -91,6 +91,17 @@ def mute_unmute(event=None):
     muted_effects = not muted_effects
     mute_button.configure(text='Unmute 🔇' if muted_effects else 'Mute 🔊')
 
+def default_keys():
+    global A_var, B_var, X_var, Y_var, LB_var, RB_var, LT_var, RT_var 
+    A_var.set("l")
+    B_var.set("=")
+    X_var.set("k")
+    Y_var.set("o")
+    LB_var.set("e")
+    RB_var.set("i")
+    LT_var.set("q")
+    RT_var.set("p")
+
 def keys_menu():
     keys_window = Toplevel(root)
     keys_window.title("Keys preference")
@@ -98,6 +109,11 @@ def keys_menu():
 
     main_frame = Frame(keys_window)
     main_frame.grid(row=0, column=2, sticky='n')
+
+    def validate_input(new_value):
+         return len(new_value) <= 1
+
+    vcmd = keys_window.register(validate_input)
 
     # Define button labels
     A_label = Label(main_frame, text='A:', font=('Arial', 14))
@@ -113,16 +129,16 @@ def keys_menu():
     Y_label.grid(row=3, column=0, padx=10, pady=5, sticky='w')
 
     # Define button entry widgets and associate them with StringVar
-    A_entry = Entry(main_frame, width=8, textvariable=A_var, font=('Helvetica', 18))
+    A_entry = Entry(main_frame, width=8,validate="key", validatecommand=(vcmd, '%P'), textvariable=A_var, font=('Helvetica', 18))
     A_entry.grid(row=0, column=1, padx=10, pady=5)
 
-    B_entry = Entry(main_frame, width=8, textvariable=B_var, font=('Helvetica', 18))
+    B_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=B_var, font=('Helvetica', 18))
     B_entry.grid(row=1, column=1, padx=10, pady=5)
 
-    X_entry = Entry(main_frame, width=8, textvariable=X_var, font=('Helvetica', 18))
+    X_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=X_var, font=('Helvetica', 18))
     X_entry.grid(row=2, column=1, padx=10, pady=5)
 
-    Y_entry = Entry(main_frame, width=8, textvariable=Y_var, font=('Helvetica', 18))
+    Y_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=Y_var, font=('Helvetica', 18))
     Y_entry.grid(row=3, column=1, padx=10, pady=5)
 
     # Define trigger labels
@@ -139,22 +155,22 @@ def keys_menu():
     RT_label.grid(row=3, column=2, padx=10, pady=5, sticky='w')
 
     # Define Trigger entry widgets and associate them with StringVar
-    LB_entry = Entry(main_frame, width=8, textvariable=LB_var, font=('Helvetica', 18))
+    LB_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=LB_var, font=('Helvetica', 18))
     LB_entry.grid(row=0, column=3, padx=10, pady=5)
 
-    RB_entry = Entry(main_frame, width=8, textvariable=RB_var, font=('Helvetica', 18))
+    RB_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=RB_var, font=('Helvetica', 18))
     RB_entry.grid(row=1, column=3, padx=10, pady=5)
 
-    LT_entry = Entry(main_frame, width=8, textvariable=LT_var, font=('Helvetica', 18))
+    LT_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=LT_var, font=('Helvetica', 18))
     LT_entry.grid(row=2, column=3, padx=10, pady=5)
 
-    RT_entry = Entry(main_frame, width=8, textvariable=RT_var, font=('Helvetica', 18))
+    RT_entry = Entry(main_frame, width=8, validatecommand=(vcmd, '%P'), textvariable=RT_var, font=('Helvetica', 18))
     RT_entry.grid(row=3, column=3, padx=10, pady=5)
 
     bottom_frame = Frame(keys_window)
     bottom_frame.grid(row=4, column=2, pady=45, padx=45)
 
-    set_default = Button(bottom_frame, text='Set Default', font=('Helvetica', 14))
+    set_default = Button(bottom_frame, text='Set Default', font=('Helvetica', 14), command=default_keys)
     set_default.grid()
 
 # Create the top frame to hold the set keys button
@@ -171,7 +187,7 @@ points_label.pack(anchor='center', side='top')
 
 # Create the mute button and place it in the main window
 mute_button = Button(root, text='Mute 🔊', font=('Roboto', 28),
-                     width=13, height=2, command=mute_unmute)
+                     width=13, height=2,bg='#34b4eb', command=mute_unmute)
 mute_button.pack(side='bottom')
 
 # Create the game button with an initial random gamepad button and place it in the main window
