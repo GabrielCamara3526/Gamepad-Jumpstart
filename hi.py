@@ -62,11 +62,25 @@ def hit_key(event):
     key = event.char
 
     if key in get_keyboard_to_gamepad() and get_keyboard_to_gamepad()[key] == current_text:
+        slide_right()
         count_point()
-        new_game_button()
+        root.after(100, new_game_button)
 
-def slide_animation():
-    pass
+def slide_left():
+    global my_x
+    if my_x > 390:
+        my_x -= 8
+        game_button.place(x=my_x)
+        root.after(10, slide_left)
+
+def slide_right():
+    global my_x
+    if my_x < 450:
+        my_x += 8
+        game_button.place(x=my_x)
+        root.after(10, slide_right)
+    else:
+        root.after(100, slide_left)
 
 top_frame = Frame(root)
 top_frame.pack(side='top', anchor='e')
@@ -84,11 +98,13 @@ if initial_button in ["Y"]:
 else:
     initial_fgcolor = "white"
 
-game_button = Button(game_frame, text=initial_button, font=('Helvetica',32), 
+global my_x
+my_x = 390
+game_button = Button(root, text=initial_button, font=('Helvetica',32), 
                      bg=gamepad_colors[initial_button], 
                      fg=initial_fgcolor, height=5, width=10, command=new_game_button, 
                      bd=0, highlightthickness=0)
-game_button.grid(row=0,column=0, padx=(10, 0), pady=(0, 20))
+game_button.place(x=my_x, y=600/2, anchor='center')
 
 
 preview_nxt_btn = Button(root, text=choice(gamepad_buttons), 
