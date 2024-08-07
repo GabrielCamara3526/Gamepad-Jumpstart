@@ -36,7 +36,6 @@ def change_bgcolor():
 
     game_button.configure(bg=gamepad_colors[current_text])
     preview_nxt_btn.configure(bg=gamepad_colors[current_preview_txt])
-
     if current_text in ["LB", "RB", "LT", "RT"]:
         game_button.configure(fg='white')
     else:
@@ -44,7 +43,7 @@ def change_bgcolor():
 
     if current_preview_txt in ["LB", "RB", "LT", "RT"]:
         preview_nxt_btn.configure(fg='white')
-    else:
+    elif current_preview_txt in ["A", "B", "X", "Y"]:
         preview_nxt_btn.configure(fg='black')
 
 def count_point():
@@ -114,8 +113,7 @@ preview_nxt_btn = Button(root, text=choice(gamepad_buttons),
 preview_nxt_btn.place(x=625, y=250)
 
 # Set the background color of the first preview button
-initial_bgpreview = preview_nxt_btn.cget("text")
-preview_nxt_btn.configure(bg=gamepad_colors[initial_bgpreview])
+change_bgcolor()
 
 root.bind('<Key>', hit_key)
 
