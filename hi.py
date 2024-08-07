@@ -62,10 +62,12 @@ def hit_key(event):
     key = event.char
 
     if key in get_keyboard_to_gamepad() and get_keyboard_to_gamepad()[key] == current_text:
+        correct_sound.play()
         slide_right()
         count_point()
         root.after(100, new_game_button)
-
+    else:
+        wrong_sound.play()
 def slide_left():
     global my_x
     if my_x > 390:
