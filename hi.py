@@ -18,11 +18,13 @@ gamepad_colors = {"A": "#0ec809", "B": "red", "X": "blue", "Y": "yellow",
 
 points_counter = 0
 muted_effects = False
+app_bg_theme = '#30d30d30d'
 
 root = Tk()
 root.geometry("800x600")
 root.title("Gamepad Helper")
-root.configure(bg='#30d30d30d')
+root.resizable(False, False)
+root.configure(background=app_bg_theme)
 
 def get_keyboard_to_gamepad():
     return {
@@ -79,9 +81,26 @@ def slide_right():
     if my_x < 450:
         my_x += 8
         game_button.place(x=my_x)
-        root.after(10, slide_right)
+        root.after(5, slide_right)
     else:
         root.after(100, slide_left)
+
+lights_off = True
+
+def light_mode():
+    global lights_off
+    if lights_off:
+        root.configure(bg="#d9d9d9")
+        points_label.configure(bg="#d9d9d9")
+        points_label.configure(fg="black")
+        theme_changer.configure(text='🌙')
+        lights_off = False
+    else:
+        root.configure(bg="#30d30d30d")
+        points_label.configure(bg="#30d30d30d")
+        points_label.configure(fg="white")
+        theme_changer.configure(text="🔆")
+        lights_off = True
 
 top_frame = Frame(root)
 top_frame.pack(side='top', anchor='e')
@@ -93,6 +112,10 @@ game_frame = Frame(root, bg='#30d30d30d')
 game_frame.pack(side='bottom', pady=(0, 145))
 
 initial_button = choice(gamepad_buttons)
+
+theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16), bg='black',
+                       activebackground='#222222')
+theme_changer.place(x=0, y=545)
 
 if initial_button in ["Y"]:
     initial_fgcolor = "black"
