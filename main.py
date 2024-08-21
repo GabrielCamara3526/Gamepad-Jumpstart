@@ -17,7 +17,6 @@ gamepad_colors = {"A": "#0ec809", "B": "red", "X": "blue", "Y": "yellow",
 
 
 points_counter = 0
-muted_effects = False
 app_bg_theme = '#30d30d30d'
 
 root = Tk()
@@ -90,7 +89,7 @@ def slide_right():
 
 #App Starts in Dark mode;
 lights_off = True 
-muted_app = False
+muted_app = True
 
 def light_mode():
     global lights_off
@@ -131,7 +130,7 @@ theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16
                        activebackground='#222222')
 theme_changer.place(x=0, y=545)
 
-sound_button = Button(root, text="🔊", font=('Roboto', 16), width=5, command=mute_unmute, fg='white', bg='black',
+sound_button = Button(root, text="🔇", font=('Roboto', 16), width=5, command=mute_unmute, fg='white', bg='black',
                       activebackground='#222222', activeforeground='white')
 sound_button.place(x=75, y=545)
 
