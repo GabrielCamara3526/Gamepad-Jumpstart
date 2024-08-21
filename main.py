@@ -63,12 +63,15 @@ def hit_key(event):
     key = event.char
 
     if key in get_keyboard_to_gamepad() and get_keyboard_to_gamepad()[key] == current_text:
-        correct_sound.play()
+        if not muted_app:
+            correct_sound.play()
         slide_right()
         count_point()
         root.after(100, new_game_button)
     else:
-        wrong_sound.play()
+        if not muted_app:
+            wrong_sound.play()
+        
 def slide_left():
     global my_x
     if my_x > 390:
@@ -85,7 +88,9 @@ def slide_right():
     else:
         root.after(100, slide_left)
 
-lights_off = True
+#App Starts in Dark mode;
+lights_off = True 
+muted_app = False
 
 def light_mode():
     global lights_off
@@ -102,6 +107,15 @@ def light_mode():
         theme_changer.configure(text="🔆")
         lights_off = True
 
+def mute_unmute():
+    global muted_app
+    muted_app = not muted_app
+    if muted_app == True:
+        sound_button.configure(text="🔇")
+    elif muted_app == False:
+        sound_button.configure(text="🔊")
+    return muted_app
+
 top_frame = Frame(root)
 top_frame.pack(side='top', anchor='e')
 
@@ -116,6 +130,10 @@ initial_button = choice(gamepad_buttons)
 theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16), bg='black',
                        activebackground='#222222')
 theme_changer.place(x=0, y=545)
+
+sound_button = Button(root, text="🔊", font=('Roboto', 16), width=5, command=mute_unmute, fg='white', bg='black',
+                      activebackground='#222222', activeforeground='white')
+sound_button.place(x=75, y=545)
 
 if initial_button in ["Y"]:
     initial_fgcolor = "black"
