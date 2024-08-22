@@ -15,7 +15,6 @@ gamepad_buttons = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
 gamepad_colors = {"A": "#0ec809", "B": "red", "X": "blue", "Y": "yellow",
                   "LB": "#181818", "RB": "#181818", "LT": "#181818", "RT": "#181818"}
 
-
 points_counter = 0
 app_bg_theme = '#30d30d30d'
 
@@ -69,7 +68,7 @@ def hit_key(event):
         root.after(100, new_game_button)
     else:
         if not muted_app:
-            wrong_sound.play()
+                wrong_sound.play()
         
 def slide_left():
     global my_x
