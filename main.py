@@ -15,9 +15,13 @@ gamepad_buttons = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
 gamepad_colors = {"A": "#0ec809", "B": "red", "X": "blue", "Y": "yellow",
                   "LB": "#181818", "RB": "#181818", "LT": "#181818", "RT": "#181818"}
 
-
 points_counter = 0
 app_bg_theme = '#30d30d30d'
+soundless_keys = ["Alt_L", "BackSpace", "Shift_L", "Shift_R", "KP_Enter", "Return", "Tab", 
+                  "Caps_Lock", "Control_L", "Control_R", "KP_Divide", "Num_Lock", "apostrophe", 
+                  "Left", "Right", "Down", "Up", 'Escape', "F1", "F2", "F3", "F4", "F5", "F6", 
+                  "F7", "F8", "F9", "F10", "F11", "F12", 'Delete', 'End', 'Insert', 'Home','Prior', 'Next', 'space']
+
 
 root = Tk()
 root.geometry("800x600")
@@ -60,6 +64,7 @@ def new_game_button():
 def hit_key(event):
     current_text = game_button.cget("text")
     key = event.char
+    keysym = event.keysym
 
     if key in get_keyboard_to_gamepad() and get_keyboard_to_gamepad()[key] == current_text:
         if not muted_app:
@@ -67,9 +72,10 @@ def hit_key(event):
         slide_right()
         count_point()
         root.after(100, new_game_button)
-    else:
+    elif keysym not in soundless_keys:
         if not muted_app:
             wrong_sound.play()
+        
         
 def slide_left():
     global my_x
