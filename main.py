@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import Toplevel, Label
 from random import choice
+from settings import open_sets_win
 import pygame
 
 def get_keyboard_to_gamepad():
@@ -157,7 +158,7 @@ theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16
 theme_changer.place(x=0, y=545)
 
 keys_preference = Button(root, text="⚙️", bg='black', fg='white', activebackground='#222222', activeforeground='white',
-                         font=('Roboto', 16))
+                         font=('Roboto', 16), command=lambda: open_sets_win(root))
 keys_preference.place(x=64, y=545)
 
 sound_button = Button(root, text="🔇", font=('Roboto', 16), width=5, command=mute_unmute, fg='white', bg='black',
