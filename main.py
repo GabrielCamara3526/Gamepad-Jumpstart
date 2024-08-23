@@ -3,32 +3,6 @@ from tkinter import Toplevel, Label
 from random import choice
 import pygame
 
-pygame.init()
-
-correct_sound = pygame.mixer.Sound("correctanswer.mp3")
-wrong_sound = pygame.mixer.Sound("wronganswer.mp3")
-
-
-gamepad_buttons = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
-
-
-gamepad_colors = {"A": "#0ec809", "B": "red", "X": "blue", "Y": "yellow",
-                  "LB": "#181818", "RB": "#181818", "LT": "#181818", "RT": "#181818"}
-
-points_counter = 0
-app_bg_theme = '#30d30d30d'
-soundless_keys = ["Alt_L", "BackSpace", "Shift_L", "Shift_R", "KP_Enter", "Return", "Tab", 
-                  "Caps_Lock", "Control_L", "Control_R", "KP_Divide", "Num_Lock", "apostrophe", 
-                  "Left", "Right", "Down", "Up", 'Escape', "F1", "F2", "F3", "F4", "F5", "F6", 
-                  "F7", "F8", "F9", "F10", "F11", "F12", 'Delete', 'End', 'Insert', 'Home','Prior', 'Next', 'space']
-
-
-root = Tk()
-root.geometry("800x600")
-root.title("Gamepad Helper")
-root.resizable(False, False)
-root.configure(background=app_bg_theme)
-
 def get_keyboard_to_gamepad():
     return {
         'l': 'A', '=': 'B', 'k': 'X', 'o': 'Y',
@@ -121,6 +95,31 @@ def mute_unmute():
         sound_button.configure(text="🔊")
     return muted_app
 
+pygame.init()
+
+correct_sound = pygame.mixer.Sound("correctanswer.mp3")
+wrong_sound = pygame.mixer.Sound("wronganswer.mp3")
+
+
+gamepad_buttons = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
+
+
+gamepad_colors = {"A": "#0ec809", "B": "red", "X": "blue", "Y": "yellow",
+                  "LB": "#181818", "RB": "#181818", "LT": "#181818", "RT": "#181818"}
+
+points_counter = 0
+app_bg_theme = '#30d30d30d'
+soundless_keys = ["Alt_L", "BackSpace", "Shift_L", "Shift_R", "KP_Enter", "Return", "Tab", 
+                  "Caps_Lock", "Control_L", "Control_R", "KP_Divide", "Num_Lock", "apostrophe", 
+                  "Left", "Right", "Down", "Up", 'Escape', "F1", "F2", "F3", "F4", "F5", "F6", 
+                  "F7", "F8", "F9", "F10", "F11", "F12", 'Delete', 'End', 'Insert', 'Home','Prior', 'Next', 'space']
+
+root = Tk()
+root.geometry("800x600")
+root.title("Gamepad Helper")
+root.resizable(False, False)
+root.configure(background=app_bg_theme)
+
 top_frame = Frame(root)
 top_frame.pack(side='top', anchor='e')
 
@@ -131,14 +130,6 @@ game_frame = Frame(root, bg='#30d30d30d')
 game_frame.pack(side='bottom', pady=(0, 145))
 
 initial_button = choice(gamepad_buttons)
-
-theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16), bg='black',
-                       activebackground='#222222')
-theme_changer.place(x=0, y=545)
-
-sound_button = Button(root, text="🔇", font=('Roboto', 16), width=5, command=mute_unmute, fg='white', bg='black',
-                      activebackground='#222222', activeforeground='white')
-sound_button.place(x=75, y=545)
 
 if initial_button in ["Y"]:
     initial_fgcolor = "black"
@@ -157,6 +148,18 @@ game_button.place(x=my_x, y=600/2, anchor='center')
 preview_nxt_btn = Button(root, text=choice(gamepad_buttons), 
                          font=('Helvetica',16), width=7, height=3,fg='white' )
 preview_nxt_btn.place(x=625, y=250)
+
+theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16), bg='black',
+                       activebackground='#222222')
+theme_changer.place(x=0, y=545)
+
+keys_preference = Button(root, text="⚙️", bg='black', fg='white', activebackground='#222222', activeforeground='white',
+                         font=('Roboto', 16))
+keys_preference.place(x=64, y=545)
+
+sound_button = Button(root, text="🔇", font=('Roboto', 16), width=5, command=mute_unmute, fg='white', bg='black',
+                      activebackground='#222222', activeforeground='white')
+sound_button.place(x=118, y=545)
 
 # Set the background color of the first preview button
 change_bgcolor()
