@@ -30,13 +30,16 @@ def count_point():
     points_counter += 1
     points_label.configure(text=str(points_counter))
 
+#Called on hit_key. Get preview_ntx_btn text and bring it to game_button then set a new random text to preview button.
 def new_game_button():
     game_button.configure(text=preview_nxt_btn.cget("text"))
     preview_nxt_btn.configure(text=choice(gamepad_buttons))
     change_bgcolor()
 
+#Get the key that is pressed and compare it to the current random text coming from game_button.
 def hit_key(event):
     current_text = game_button.cget("text")
+    #key receives the pressed character on the keyboard. Keysym is the same except it doesn't take modifiers.
     key = event.char
     keysym = event.keysym
 
@@ -49,8 +52,7 @@ def hit_key(event):
     elif keysym not in soundless_keys:
         if not muted_app:
             wrong_sound.play()
-        
-        
+           
 def slide_left():
     global my_x
     if my_x > 390:
@@ -67,10 +69,11 @@ def slide_right():
     else:
         root.after(100, slide_left)
 
-#App Starts in Dark mode;
+#These work like On/Off Switches: App Starts in Dark mode (lights_off) and Muted. 
 lights_off = True 
 muted_app = True
 
+#Handles the click on theme_changer button. if lights_off is true, sets widgets to brighter color.
 def light_mode():
     global lights_off
     if lights_off:
