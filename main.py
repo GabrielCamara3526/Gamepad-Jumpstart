@@ -4,9 +4,11 @@ from random import choice
 import pygame
 
 def get_keyboard_to_gamepad():
+    global a_var, b_var, x_var, y_var
+    global lb_var, rb_var, lt_var, rt_var
     return {
-        'l': 'A', '=': 'B', 'k': 'X', 'o': 'Y',
-        'e': 'LB','i': 'RB', 'q': 'LT', 'p': 'RT'
+        a_var.get(): 'A', b_var.get(): 'B', x_var.get(): 'X', y_var.get(): 'Y',
+        lb_var.get(): 'LB', rb_var.get(): 'RB', lt_var.get(): 'LT', rt_var.get(): 'RT'
     }
 
 def change_bgcolor():
@@ -98,41 +100,44 @@ def mute_unmute():
         sound_button.configure(text="🔊")
     return muted_app
 
-from tkinter import *
-
 def open_sets_win(root):
     top = Toplevel(root)
     top.title("Key settings menu")
     top.geometry("400x300")
 
+    global a_var, x_var, b_var, y_var
+    global lb_var, rt_var, lt_var, rb_var
+
+    entry_font = ('Roboto', 16)
+
     btns_frame = Frame(top)
     btns_frame.pack(side='left', anchor='n')
 
-    A_entry = Entry(btns_frame, width=10)
+    A_entry = Entry(btns_frame, width=10, textvariable=a_var, font=entry_font)
     A_entry.pack(anchor='w')
 
-    B_entry = Entry(btns_frame, width=10)
+    B_entry = Entry(btns_frame, width=10, textvariable=b_var, font=entry_font)
     B_entry.pack(anchor='w')
 
-    X_entry = Entry(btns_frame, width=10)
+    X_entry = Entry(btns_frame, width=10, textvariable=x_var, font=entry_font)
     X_entry.pack(anchor='w')
 
-    Y_entry = Entry(btns_frame, width=10)
+    Y_entry = Entry(btns_frame, width=10, textvariable=y_var, font=entry_font)
     Y_entry.pack(anchor='w')
 
     triggers_frame = Frame(top)
     triggers_frame.pack(side='left', anchor='n', padx=5)
 
-    LB_entry = Entry(triggers_frame, width=10)
+    LB_entry = Entry(triggers_frame, width=10, textvariable=lb_var, font=entry_font)
     LB_entry.pack(side='top', anchor='e')
 
-    RB_entry = Entry(triggers_frame, width=10)
+    RB_entry = Entry(triggers_frame, width=10, textvariable=rb_var, font=entry_font)
     RB_entry.pack(side='top', anchor='e')
 
-    LT_entry = Entry(triggers_frame, width=10)
+    LT_entry = Entry(triggers_frame, width=10, textvariable=lt_var, font=entry_font)
     LT_entry.pack(side='top', anchor='e')
 
-    RT_entry = Entry(triggers_frame, width=10)
+    RT_entry = Entry(triggers_frame, width=10, textvariable=rt_var, font=entry_font)
     RT_entry.pack(side='top', anchor='e')
 
     top.mainloop()
@@ -161,6 +166,17 @@ root.geometry("800x600")
 root.title("Gamepad Helper")
 root.resizable(False, False)
 root.configure(background=app_bg_theme)
+
+
+a_var = StringVar(value="l")
+b_var = StringVar(value="=")
+x_var = StringVar(value="k")
+y_var = StringVar(value="o")
+
+lb_var = StringVar(value="e")
+rb_var = StringVar(value="i")
+lt_var = StringVar(value="q")
+rt_var = StringVar(value="p")
 
 top_frame = Frame(root)
 top_frame.pack(side='top', anchor='e')
