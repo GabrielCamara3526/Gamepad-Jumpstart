@@ -109,36 +109,65 @@ def open_sets_win(root):
     global lb_var, rt_var, lt_var, rb_var
 
     entry_font = ('Roboto', 16)
+    label_font = ('Roboto', 14)
 
     btns_frame = Frame(top)
     btns_frame.pack(side='left', anchor='n')
 
+    #These are the Button Labels
+    A_label = Label(btns_frame, text='A: ', font=label_font)
+    A_label.grid(row=0, column=0)
+
+    B_label = Label(btns_frame, text='B: ', font=label_font)
+    B_label.grid(row=1, column=0)
+
+    X_label = Label(btns_frame, text='X: ', font=label_font)
+    X_label.grid(row=2, column=0)
+
+    Y_label = Label(btns_frame, text='Y: ', font=label_font)
+    Y_label.grid(row=3, column=0)
+
+    #These are the Button Entries
     A_entry = Entry(btns_frame, width=10, textvariable=a_var, font=entry_font)
-    A_entry.pack(anchor='w')
+    A_entry.grid(row=0, column=1)
 
     B_entry = Entry(btns_frame, width=10, textvariable=b_var, font=entry_font)
-    B_entry.pack(anchor='w')
+    B_entry.grid(row=1, column=1)
 
     X_entry = Entry(btns_frame, width=10, textvariable=x_var, font=entry_font)
-    X_entry.pack(anchor='w')
+    X_entry.grid(row=2, column=1)
 
     Y_entry = Entry(btns_frame, width=10, textvariable=y_var, font=entry_font)
-    Y_entry.pack(anchor='w')
+    Y_entry.grid(row=3, column=1)
 
     triggers_frame = Frame(top)
     triggers_frame.pack(side='left', anchor='n', padx=5)
 
+    #These are the trigger Labels
+    LB_label = Label(triggers_frame, text='LB: ', font=label_font)
+    LB_label.grid(row=0, column=0)
+
+    RB_label = Label(triggers_frame, text='RB: ', font=label_font)
+    RB_label.grid(row=1, column=0)
+
+    LT_label = Label(triggers_frame, text='LT: ', font=label_font)
+    LT_label.grid(row=2, column=0)
+
+    RT_label = Label(triggers_frame, text='RT: ', font=label_font)
+    RT_label.grid(row=3, column=0)
+
+    #These are the trigger Entries
     LB_entry = Entry(triggers_frame, width=10, textvariable=lb_var, font=entry_font)
-    LB_entry.pack(side='top', anchor='e')
+    LB_entry.grid(row=0, column=1)
 
     RB_entry = Entry(triggers_frame, width=10, textvariable=rb_var, font=entry_font)
-    RB_entry.pack(side='top', anchor='e')
+    RB_entry.grid(row=1, column=1)
 
     LT_entry = Entry(triggers_frame, width=10, textvariable=lt_var, font=entry_font)
-    LT_entry.pack(side='top', anchor='e')
+    LT_entry.grid(row=2, column=1)
 
     RT_entry = Entry(triggers_frame, width=10, textvariable=rt_var, font=entry_font)
-    RT_entry.pack(side='top', anchor='e')
+    RT_entry.grid(row=3, column=1)
 
     top.mainloop()
 
