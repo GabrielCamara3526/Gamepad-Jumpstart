@@ -104,6 +104,7 @@ def open_sets_win(root):
     top = Toplevel(root)
     top.title("Key settings menu")
     top.geometry("400x300")
+    top.resizable(False, False)
 
     global a_var, x_var, b_var, y_var
     global lb_var, rt_var, lt_var, rb_var
@@ -115,16 +116,16 @@ def open_sets_win(root):
     btns_frame.pack(side='left', anchor='n')
 
     #These are the Button Labels
-    A_label = Label(btns_frame, text='A: ', font=label_font)
+    A_label = Label(btns_frame, text='A: ', font=label_font, bg='lightgreen', fg='black')
     A_label.grid(row=0, column=0)
 
-    B_label = Label(btns_frame, text='B: ', font=label_font)
+    B_label = Label(btns_frame, text='B: ', font=label_font, bg='red', fg='white')
     B_label.grid(row=1, column=0)
 
-    X_label = Label(btns_frame, text='X: ', font=label_font)
+    X_label = Label(btns_frame, text='X: ', font=label_font, bg='blue', fg='white')
     X_label.grid(row=2, column=0)
 
-    Y_label = Label(btns_frame, text='Y: ', font=label_font)
+    Y_label = Label(btns_frame, text='Y: ', font=label_font, bg='yellow')
     Y_label.grid(row=3, column=0)
 
     #These are the Button Entries
@@ -144,16 +145,16 @@ def open_sets_win(root):
     triggers_frame.pack(side='left', anchor='n', padx=5)
 
     #These are the trigger Labels
-    LB_label = Label(triggers_frame, text='LB: ', font=label_font)
+    LB_label = Label(triggers_frame, text='LB: ', font=label_font, bg='black', fg='white')
     LB_label.grid(row=0, column=0)
 
-    RB_label = Label(triggers_frame, text='RB: ', font=label_font)
+    RB_label = Label(triggers_frame, text='RB: ', font=label_font, bg='black', fg='white')
     RB_label.grid(row=1, column=0)
 
-    LT_label = Label(triggers_frame, text='LT: ', font=label_font)
+    LT_label = Label(triggers_frame, text='LT: ', font=label_font, bg='black', fg='white')
     LT_label.grid(row=2, column=0)
 
-    RT_label = Label(triggers_frame, text='RT: ', font=label_font)
+    RT_label = Label(triggers_frame, text='RT: ', font=label_font, bg='black', fg='white')
     RT_label.grid(row=3, column=0)
 
     #These are the trigger Entries
