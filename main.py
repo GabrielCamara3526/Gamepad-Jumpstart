@@ -105,6 +105,7 @@ def open_sets_win(root):
     top.title("Key settings menu")
     top.geometry("400x300")
     top.resizable(False, False)
+    top.configure(bg=app_bg_theme)
 
     global a_var, x_var, b_var, y_var
     global lb_var, rt_var, lt_var, rb_var
@@ -112,7 +113,7 @@ def open_sets_win(root):
     entry_font = ('Roboto', 16)
     label_font = ('Roboto', 14)
 
-    btns_frame = Frame(top)
+    btns_frame = Frame(top, bg=app_bg_theme)
     btns_frame.pack(side='left', anchor='n')
 
     #These are the Button Labels
@@ -141,7 +142,7 @@ def open_sets_win(root):
     Y_entry = Entry(btns_frame, width=10, textvariable=y_var, font=entry_font)
     Y_entry.grid(row=3, column=1)
 
-    triggers_frame = Frame(top)
+    triggers_frame = Frame(top, bg=app_bg_theme)
     triggers_frame.pack(side='left', anchor='n', padx=5)
 
     #These are the trigger Labels
