@@ -142,6 +142,11 @@ def open_sets_win(root):
     Y_entry = Entry(btns_frame, width=10, textvariable=y_var, font=entry_font)
     Y_entry.grid(row=3, column=1)
 
+    # Adding the "Perfect" button
+    perfect_button = Button(btns_frame, text="Default", font=label_font, bg='black', fg='white', activebackground='#222222', 
+                            activeforeground='white')
+    perfect_button.grid(row=4, column=0, columnspan=2, pady=10)
+
     #These are the trigger Labels
     triggers_frame = Frame(top, bg=app_bg_theme)
     triggers_frame.pack(side='left', anchor='n', padx=5)
@@ -170,7 +175,7 @@ def open_sets_win(root):
 
     RT_entry = Entry(triggers_frame, width=10, textvariable=rt_var, font=entry_font)
     RT_entry.grid(row=3, column=1)
-
+    
     top.mainloop()
 
 pygame.init()
@@ -238,6 +243,7 @@ preview_nxt_btn = Button(root, text=choice(gamepad_buttons),
                          font=('Helvetica',16), width=7, height=3,fg='white' )
 preview_nxt_btn.place(x=625, y=250)
 
+#User buttons
 theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16), bg='black',
                        activebackground='#222222')
 theme_changer.place(x=0, y=545)
