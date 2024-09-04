@@ -113,10 +113,10 @@ def open_sets_win(root):
     entry_font = ('Roboto', 16)
     label_font = ('Roboto', 14)
 
+    #These are the Button Labels
     btns_frame = Frame(top, bg=app_bg_theme)
     btns_frame.pack(side='left', anchor='n')
 
-    #These are the Button Labels
     A_label = Label(btns_frame, text='A: ', font=label_font, bg='lightgreen', fg='black')
     A_label.grid(row=0, column=0)
 
@@ -142,10 +142,10 @@ def open_sets_win(root):
     Y_entry = Entry(btns_frame, width=10, textvariable=y_var, font=entry_font)
     Y_entry.grid(row=3, column=1)
 
+    #These are the trigger Labels
     triggers_frame = Frame(top, bg=app_bg_theme)
     triggers_frame.pack(side='left', anchor='n', padx=5)
 
-    #These are the trigger Labels
     LB_label = Label(triggers_frame, text='LB: ', font=label_font, bg='black', fg='white')
     LB_label.grid(row=0, column=0)
 
