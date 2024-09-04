@@ -142,10 +142,10 @@ def open_sets_win(root):
     Y_entry = Entry(btns_frame, width=10, textvariable=y_var, font=entry_font)
     Y_entry.grid(row=3, column=1)
 
-    # Adding the "Perfect" button
-    perfect_button = Button(btns_frame, text="Default", font=label_font, bg='black', fg='white', activebackground='#222222', 
+    #Use columnspan to space the button through more than a single column
+    reset_bindings = Button(btns_frame, text="Reset all", font=label_font, bg='black', fg='white', activebackground='#222222', 
                             activeforeground='white')
-    perfect_button.grid(row=4, column=0, columnspan=2, pady=10)
+    reset_bindings.grid(row=4, column=0, columnspan=2, pady=10)
 
     #These are the trigger Labels
     triggers_frame = Frame(top, bg=app_bg_theme)
