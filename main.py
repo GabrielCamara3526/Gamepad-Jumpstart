@@ -101,6 +101,17 @@ def mute_unmute():
     return muted_app
 
 def open_sets_win(root):
+    
+    def reset_keys():
+        a_var.set('l')
+        b_var.set('=')
+        x_var.set('k')
+        y_var.set('o')
+        rb_var.set('i')
+        lb_var.set('e')
+        rt_var.set('p')
+        lt_var.set('q')
+
     top = Toplevel(root)
     top.title("Key settings menu")
     top.geometry("400x300")
@@ -144,7 +155,7 @@ def open_sets_win(root):
 
     #Use columnspan to space the button through more than a single column
     reset_bindings = Button(btns_frame, text="Reset all", font=label_font, bg='black', fg='white', activebackground='#222222', 
-                            activeforeground='white')
+                            activeforeground='white', command=reset_keys)
     reset_bindings.grid(row=4, column=0, columnspan=2, pady=10)
 
     #These are the trigger Labels
