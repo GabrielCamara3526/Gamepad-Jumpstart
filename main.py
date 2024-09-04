@@ -112,6 +112,9 @@ def open_sets_win(root):
         rt_var.set('p')
         lt_var.set('q')
 
+    def save_keys():
+        top.destroy()
+
     top = Toplevel(root)
     top.title("Key settings menu")
     top.geometry("400x300")
@@ -123,7 +126,7 @@ def open_sets_win(root):
 
     entry_font = ('Roboto', 16)
     label_font = ('Roboto', 14)
-
+    
     #These are the Button Labels
     btns_frame = Frame(top, bg=app_bg_theme)
     btns_frame.pack(side='left', anchor='n')
@@ -153,8 +156,8 @@ def open_sets_win(root):
     Y_entry = Entry(btns_frame, width=10, textvariable=y_var, font=entry_font)
     Y_entry.grid(row=3, column=1)
 
-    #Use columnspan to space the button through more than a single column
-    reset_bindings = Button(btns_frame, text="Reset all", font=label_font, bg='black', fg='white', activebackground='#222222', 
+    #Button to reset all Entries
+    reset_bindings = Button(btns_frame, text="Reset all", font=label_font, bg='black', fg='white', activebackground='#444444', 
                             activeforeground='white', command=reset_keys)
     reset_bindings.grid(row=4, column=0, columnspan=2, pady=10)
 
@@ -187,6 +190,11 @@ def open_sets_win(root):
     RT_entry = Entry(triggers_frame, width=10, textvariable=rt_var, font=entry_font)
     RT_entry.grid(row=3, column=1)
     
+    #Button to save all Entries and close window
+    save_bindings = Button(triggers_frame, text="Save Quit", font=label_font, command=save_keys, bg='black', fg='white', 
+                           activebackground='#444444', activeforeground='white')
+    save_bindings.grid(row=4, column=1, columnspan=2, pady=10)
+
     top.mainloop()
 
 pygame.init()
