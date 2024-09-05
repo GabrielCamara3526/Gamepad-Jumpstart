@@ -204,9 +204,7 @@ pygame.init()
 correct_sound = pygame.mixer.Sound("correctanswer.mp3")
 wrong_sound = pygame.mixer.Sound("wronganswer.mp3")
 
-
 gamepad_buttons = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
-
 
 gamepad_colors = {"A": "#0ec809", "B": "red", "X": "blue", "Y": "yellow",
                   "LB": "#181818", "RB": "#181818", "LT": "#181818", "RT": "#181818"}
@@ -224,6 +222,7 @@ root.title("Gamepad Helper")
 root.resizable(False, False)
 root.configure(background=app_bg_theme)
 
+#These are global in topLevel Entries and get_keyboard_to_gamepad
 a_var = StringVar(value="l")
 b_var = StringVar(value="=")
 x_var = StringVar(value="k")
@@ -263,7 +262,7 @@ preview_nxt_btn = Button(root, text=choice(gamepad_buttons),
                          font=('Helvetica',16), width=7, height=3,fg='white' )
 preview_nxt_btn.place(x=625, y=250)
 
-#User buttons
+#User options buttons. These stay in the bottom left corner of the root win.
 theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16), bg='black',
                        activebackground='#222222')
 theme_changer.place(x=0, y=545)
