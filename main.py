@@ -115,6 +115,7 @@ def open_sets_win(root):
     def save_keys():
         top.destroy()
 
+    #Dedicate the space above to inner functions of the topLevel window under here.
     top = Toplevel(root)
     top.title("Key settings menu")
     top.geometry("400x300")
