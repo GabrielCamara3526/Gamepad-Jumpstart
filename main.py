@@ -216,6 +216,7 @@ soundless_keys = ["Alt_L", "BackSpace", "Shift_L", "Shift_R", "KP_Enter", "Retur
                   "Left", "Right", "Down", "Up", 'Escape', "F1", "F2", "F3", "F4", "F5", "F6", 
                   "F7", "F8", "F9", "F10", "F11", "F12", 'Delete', 'End', 'Insert', 'Home','Prior', 'Next', 'space']
 
+#Initialize root window
 root = Tk()
 root.geometry("800x600")
 root.title("Gamepad Helper")
