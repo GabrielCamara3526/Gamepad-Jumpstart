@@ -234,14 +234,8 @@ rb_var = StringVar(value="i")
 lt_var = StringVar(value="q")
 rt_var = StringVar(value="p")
 
-top_frame = Frame(root)
-top_frame.pack(side='top', anchor='e')
-
 points_label = Label(root, text='0', font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=0, highlightthickness=0)
 points_label.pack(anchor='center', side='top')
-
-game_frame = Frame(root, bg='#30d30d30d')
-game_frame.pack(side='bottom', pady=(0, 145))
 
 initial_button = choice(gamepad_buttons)
 
