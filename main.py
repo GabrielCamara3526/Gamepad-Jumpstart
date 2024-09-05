@@ -199,6 +199,7 @@ def open_sets_win(root):
 
 pygame.init()
 
+#App info like Sounds, buttons and their colors, etc...
 correct_sound = pygame.mixer.Sound("correctanswer.mp3")
 wrong_sound = pygame.mixer.Sound("wronganswer.mp3")
 
@@ -221,7 +222,6 @@ root.geometry("800x600")
 root.title("Gamepad Helper")
 root.resizable(False, False)
 root.configure(background=app_bg_theme)
-
 
 a_var = StringVar(value="l")
 b_var = StringVar(value="=")
