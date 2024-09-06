@@ -73,7 +73,7 @@ def update_timer():
         preview_nxt_btn.config(state=DISABLED)
 
         root.unbind('<Key>')
-        
+
         timer_label.config(text="Time's up!")
         timer_on = False
 
@@ -265,7 +265,7 @@ rb_var = StringVar(value="i")
 lt_var = StringVar(value="q")
 rt_var = StringVar(value="p")
 
-timer_state = 5
+timer_state = 60
 timer_label = Label(root, text=timer_state, font=('Roboto', 28), bg='black', fg='white', bd=1, highlightthickness=0)
 timer_label.pack(anchor='center', side='top')
 
