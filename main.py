@@ -46,15 +46,40 @@ def hit_key(event):
     keysym = event.keysym
 
     if key in get_keyboard_to_gamepad() and get_keyboard_to_gamepad()[key] == current_text:
+        global timer_on
         if not muted_app:
             correct_sound.play()
+
+        start_timer()
         slide_right()
         count_point()
+
         root.after(100, new_game_button)
+
     elif keysym not in soundless_keys:
         if not muted_app:
             wrong_sound.play()
-           
+
+
+def update_timer():
+    global timer_state, timer_on
+
+    if timer_state > 0:
+        timer_state -= 1
+        timer_label.configure(text=timer_state)
+        root.after(1000, update_timer)
+    else:
+        timer_label.config(text="Time's up!")
+        timer_on = False
+
+def start_timer():
+    global timer_on
+
+    if timer_on == False:
+        timer_on = True
+        update_timer()
+    
+
 def slide_left():
     global my_x
     if my_x > 390:
@@ -74,6 +99,7 @@ def slide_right():
 #These work like On/Off Switches: App Starts in Dark mode (lights_off) and Muted. 
 lights_off = True 
 muted_app = True
+timer_on = False
 
 #Handles the click on theme_changer button. if lights_off is true, sets widgets to brighter color.
 def light_mode():
@@ -233,6 +259,10 @@ lb_var = StringVar(value="e")
 rb_var = StringVar(value="i")
 lt_var = StringVar(value="q")
 rt_var = StringVar(value="p")
+
+timer_state = 60
+timer_label = Label(root, text=timer_state, font=('Roboto', 28), bg='black', fg='white', bd=1, highlightthickness=0)
+timer_label.pack(anchor='center', side='top')
 
 points_label = Label(root, text='0', font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=0, highlightthickness=0)
 points_label.pack(anchor='center', side='top')
