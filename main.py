@@ -127,10 +127,12 @@ def light_mode():
         root.configure(bg="#d9d9d9")
         points_label.configure(bg="#d9d9d9")
         points_label.configure(fg="black")
+        top_frame.configure(bg='#d9d9d9')
         theme_changer.configure(text='🌙')
         lights_off = False
     else:
         root.configure(bg="#30d30d30d")
+        top_frame.configure(bg='#30d30d30d')
         points_label.configure(bg="#30d30d30d")
         points_label.configure(fg="white")
         theme_changer.configure(text="🔆")
@@ -279,12 +281,16 @@ rb_var = StringVar(value="i")
 lt_var = StringVar(value="q")
 rt_var = StringVar(value="p")
 
-timer_state = 60
-timer_label = Label(root, text=timer_state, font=('Roboto', 28), bg='black', fg='white', bd=1, highlightthickness=0)
-timer_label.pack(anchor='center', side='top')
+top_frame = Frame(root, bg='#30d30d30d', relief=SUNKEN, borderwidth=1)
+top_frame.pack(side=TOP, anchor='center', fill=X)
 
-points_label = Label(root, text='0', font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=0, highlightthickness=0)
-points_label.pack(anchor='center', side='top')
+timer_state = 60
+timer_label = Label(top_frame, text=timer_state, font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=1, 
+                    highlightthickness=0)
+timer_label.pack(anchor='w', side='left')
+
+points_label = Label(top_frame, text='0', font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=0, highlightthickness=0)
+points_label.pack(anchor='e', side='right')
 
 initial_button = choice(gamepad_buttons)
 
