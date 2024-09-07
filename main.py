@@ -128,6 +128,13 @@ def light_mode():
         points_label.configure(bg="#d9d9d9")
         points_label.configure(fg="black")
         top_frame.configure(bg='#d9d9d9')
+
+        timer_reference.configure(bg='#d9d9d9')
+        timer_reference.configure(fg='black')
+
+        score_reference.configure(bg='#d9d9d9')
+        score_reference.configure(fg='black')
+
         theme_changer.configure(text='🌙')
         lights_off = False
     else:
@@ -135,6 +142,13 @@ def light_mode():
         top_frame.configure(bg='#30d30d30d')
         points_label.configure(bg="#30d30d30d")
         points_label.configure(fg="white")
+
+        timer_reference.configure(bg='#30d30d30d')
+        timer_reference.configure(fg='white')
+
+        score_reference.configure(bg='#30d30d30d')
+        score_reference.configure(fg='white')
+
         theme_changer.configure(text="🔆")
         lights_off = True
 
@@ -282,7 +296,13 @@ lt_var = StringVar(value="q")
 rt_var = StringVar(value="p")
 
 top_frame = Frame(root, bg='#30d30d30d', relief=SUNKEN, borderwidth=1)
-top_frame.pack(side=TOP, anchor='center', fill=X)
+top_frame.pack(side=TOP, anchor='center', fill=X, pady=5)
+
+timer_reference = Label(root, text='Timer', font=('Helvetica', 12), bg='#30d30d30d', fg='white')
+timer_reference.place(x=0, y=80)
+
+score_reference = Label(root, text='Score', font=('Helvetica', 12), bg='#30d30d30d', fg='white')
+score_reference.place(x=741, y=80)
 
 timer_state = 60
 timer_label = Label(top_frame, text=timer_state, font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=1, 
