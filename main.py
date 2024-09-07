@@ -61,6 +61,24 @@ def hit_key(event):
             wrong_sound.play()
 
 
+def pause_game():
+    global timer_on
+    root.unbind('<Key>')
+
+    timer_label.config(text="Time's up!")
+    timer_on = False
+
+def restart_game():
+    global timer_state, points_counter, timer_on
+    root.bind('<Key>', hit_key)
+    restart_button.place_forget()
+
+    timer_state = 60
+
+    points_counter = 0
+    timer_label.config(text=timer_state)
+    points_label.config(text=points_counter)
+
 def update_timer():
     global timer_state, timer_on
 
@@ -69,13 +87,9 @@ def update_timer():
         timer_label.configure(text=timer_state)
         root.after(1000, update_timer)
     else:
-        game_button.config(state=DISABLED)
-        preview_nxt_btn.config(state=DISABLED)
+        pause_game()
+        restart_button.place(x=328, y=465)
 
-        root.unbind('<Key>')
-
-        timer_label.config(text="Time's up!")
-        timer_on = False
 
 def start_timer():
     global timer_on
@@ -304,6 +318,9 @@ keys_preference.place(x=64, y=545)
 sound_button = Button(root, text="🔇", font=('Roboto', 16), width=5, command=mute_unmute, fg='white', bg='black',
                       activebackground='#222222', activeforeground='white')
 sound_button.place(x=118, y=545)
+
+restart_button = Button(root, text='Restart', bg='black', fg='white', activebackground='#222222', activeforeground='white',
+                         font=('Roboto', 16), command=restart_game)
 
 # Set the background color of the first preview button
 change_bgcolor()
