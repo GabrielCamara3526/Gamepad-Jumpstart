@@ -279,7 +279,7 @@ soundless_keys = ["Alt_L", "BackSpace", "Shift_L", "Shift_R", "KP_Enter", "Retur
 #Initialize root window
 root = Tk()
 root.geometry("800x600")
-root.title("Gamepad Helper")
+root.title("Gamepad Jumpstart")
 root.resizable(False, False)
 root.configure(background=app_bg_theme)
 
