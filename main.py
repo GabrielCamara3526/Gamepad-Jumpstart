@@ -46,7 +46,6 @@ def hit_key(event):
     keysym = event.keysym
 
     if key in get_keyboard_to_gamepad() and get_keyboard_to_gamepad()[key] == current_text:
-        global timer_on
         if not muted_app:
             correct_sound.play()
 
@@ -61,7 +60,7 @@ def hit_key(event):
             wrong_sound.play()
 
 
-def pause_game():
+def end_game():
     global timer_on
     root.unbind('<Key>')
 
@@ -72,7 +71,7 @@ def restart_game():
     global timer_state, points_counter, timer_on
     root.bind('<Key>', hit_key)
     restart_button.place_forget()
-
+    timer_on = False
     timer_state = 60
 
     points_counter = 0
@@ -82,13 +81,12 @@ def restart_game():
 def update_timer():
     global timer_state, timer_on
 
-    if timer_state > 0:
+    if timer_state > 0 and timer_on == True:
         timer_state -= 1
         timer_label.configure(text=timer_state)
         root.after(1000, update_timer)
-    else:
-        pause_game()
-        restart_button.place(x=328, y=465)
+    elif timer_state == 0:
+        end_game()
 
 
 def start_timer():
@@ -96,6 +94,7 @@ def start_timer():
 
     if timer_on == False:
         timer_on = True
+        restart_button.place(x=222, y=545)
         update_timer()
     
 
