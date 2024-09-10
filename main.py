@@ -67,7 +67,7 @@ def end_game():
     timer_label.config(text="Time's up!")
     timer_on = False
 
-def restart_game():
+def restart_game(event):
     global timer_state, points_counter, timer_on
     root.bind('<Key>', hit_key)
     restart_button.place_forget()
@@ -120,7 +120,7 @@ muted_app = True
 timer_on = False
 
 #Handles the click on theme_changer button. if lights_off is true, sets widgets to brighter color.
-def light_mode():
+def light_mode(event):
     global lights_off
     if lights_off:
         root.configure(bg="#d9d9d9")
@@ -151,7 +151,7 @@ def light_mode():
         theme_changer.configure(text="🔆")
         lights_off = True
 
-def mute_unmute():
+def mute_unmute(event=NONE):
     global muted_app
     muted_app = not muted_app
     if muted_app == True:
@@ -160,7 +160,7 @@ def mute_unmute():
         sound_button.configure(text="🔊")
     return muted_app
 
-def open_sets_win(root):
+def open_sets_win(event, root):
     
     def reset_keys():
         a_var.set('l')
@@ -344,6 +344,7 @@ sound_button = Button(root, text="🔇", font=('Roboto', 16), width=5, command=m
                       activebackground='#222222', activeforeground='white')
 sound_button.place(x=118, y=545)
 
+
 restart_button = Button(root, text='Restart', bg='black', fg='white', activebackground='#222222', activeforeground='white',
                          font=('Roboto', 16), command=restart_game)
 
@@ -351,5 +352,9 @@ restart_button = Button(root, text='Restart', bg='black', fg='white', activeback
 change_bgcolor()
 
 root.bind('<Key>', hit_key)
+root.bind('<Control-Shift-R>', restart_game)
+root.bind('<Control-Shift-M>', mute_unmute)
+root.bind('<Control-Shift-S>', lambda event: open_sets_win(event, root))
+root.bind('<Control-Shift-T>', light_mode)
 
 root.mainloop()
