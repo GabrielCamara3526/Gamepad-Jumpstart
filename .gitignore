@@ -202,3 +202,5 @@ firstenv/include/site/python3.12/pygame/surface.h
 firstenv/lib64
 firstenv/pyvenv.cfg
 requirements.txt
+gpjs_venv/bin/activate
+/gpjs_venv
