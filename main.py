@@ -94,7 +94,7 @@ def start_timer():
 
     if timer_on == False:
         timer_on = True
-        restart_button.place(x=222, y=545)
+        restart_button.place(x=223, y=545)
         update_timer()
     
 
