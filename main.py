@@ -160,7 +160,7 @@ def mute_unmute(event=NONE):
         sound_button.configure(text="🔊")
     return muted_app
 
-def open_sets_win(event, root):
+def open_sets_win(root, event):
     
     def reset_keys():
         a_var.set('l')
@@ -337,7 +337,7 @@ theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16
 theme_changer.place(x=0, y=545)
 
 keys_preference = Button(root, text="⚙️", bg='black', fg='white', activebackground='#222222', activeforeground='white',
-                         font=('Roboto', 16), command=lambda: open_sets_win(root))
+                         font=('Roboto', 16), command=lambda: open_sets_win(root, event=NONE))
 keys_preference.place(x=64, y=545)
 
 sound_button = Button(root, text="🔇", font=('Roboto', 16), width=5, command=mute_unmute, fg='white', bg='black',
@@ -346,7 +346,7 @@ sound_button.place(x=118, y=545)
 
 
 restart_button = Button(root, text='Restart', bg='black', fg='white', activebackground='#222222', activeforeground='white',
-                         font=('Roboto', 16), command=restart_game)
+                         font=('Roboto', 16), command=lambda: restart_game(event=NONE))
 
 # Set the background color of the first preview button
 change_bgcolor()
@@ -354,7 +354,7 @@ change_bgcolor()
 root.bind('<Key>', hit_key)
 root.bind('<Control-Shift-R>', restart_game)
 root.bind('<Control-Shift-M>', mute_unmute)
-root.bind('<Control-Shift-S>', lambda event: open_sets_win(event, root))
+root.bind('<Control-Shift-S>', lambda event: open_sets_win(root, event))
 root.bind('<Control-Shift-T>', light_mode)
 
 root.mainloop()
