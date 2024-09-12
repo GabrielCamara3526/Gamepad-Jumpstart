@@ -120,7 +120,7 @@ muted_app = True
 timer_on = False
 
 #Handles the click on theme_changer button. if lights_off is true, sets widgets to brighter color.
-def light_mode(event):
+def light_mode(event=NONE):
     global lights_off
     if lights_off:
         root.configure(bg="#d9d9d9")
