@@ -1,4 +1,4 @@
-# Gamepad JumpStart 
+# Gamepad Jumpstart 
  Gamepad JumpStart is a Desktop Application for Windows that allows users to Match Practicable Xbox Gamepad Layout sets to correlative keys on their Keyboard for the purpose of Gaming Rendition Improvements.
 
 # Features
