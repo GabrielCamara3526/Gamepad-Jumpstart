@@ -4,7 +4,7 @@ from random import choice
 import pygame
 from game_tiles import gamepad_colors, app_bg_theme, gamepad_buttons, correct_sound, wrong_sound, soundless_keys, points_counter
 from root_window import root
-from keys_settings import open_sets_win
+from key_settings import open_sets_win
 from root_window import *
 
 def get_keyboard_to_gamepad():
