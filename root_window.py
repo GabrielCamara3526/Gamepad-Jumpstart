@@ -1,7 +1,6 @@
 from tkinter import *
 from game_tiles import app_bg_theme
 
-#Initialize root window
 root = Tk()
 root.geometry("800x600")
 root.title("Gamepad Jumpstart")
