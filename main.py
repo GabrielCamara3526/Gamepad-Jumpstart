@@ -6,6 +6,9 @@ from game_tiles import gamepad_colors, app_bg_theme, gamepad_buttons, correct_so
 from root_window import root
 from key_settings import open_sets_win
 from root_window import *
+from defless_ui import timer_state, timer_reference, score_reference, points_label, preview_nxt_btn, timer_label, top_frame
+from timer_control import update_timer, end_game
+from switches import timer_on, muted_app, lights_off
 
 def get_keyboard_to_gamepad():
     global a_var, b_var, x_var, y_var
@@ -64,13 +67,6 @@ def hit_key(event):
             wrong_sound.play()
 
 
-def end_game():
-    global timer_on
-    root.unbind('<Key>')
-
-    timer_label.config(text="Time's up!")
-    timer_on = False
-
 def restart_game(event):
     global timer_state, points_counter, timer_on
     root.bind('<Key>', hit_key)
@@ -81,26 +77,6 @@ def restart_game(event):
     points_counter = 0
     timer_label.config(text=timer_state)
     points_label.config(text=points_counter)
-
-def update_timer():
-    global timer_state, timer_on
-
-    if timer_state > 0 and timer_on == True:
-        timer_state -= 1
-        timer_label.configure(text=timer_state)
-        root.after(1000, update_timer)
-    elif timer_state == 0:
-        end_game()
-
-
-def start_timer():
-    global timer_on
-
-    if timer_on == False:
-        timer_on = True
-        restart_button.place(x=223, y=545)
-        update_timer()
-    
 
 def slide_left():
     global my_x
@@ -117,11 +93,6 @@ def slide_right():
         root.after(5, slide_right)
     else:
         root.after(100, slide_left)
-
-#These work like On/Off Switches: App Starts in Dark mode (lights_off) and Muted. 
-lights_off = True 
-muted_app = True
-timer_on = False
 
 #Handles the click on theme_changer button. if lights_off is true, sets widgets to brighter color.
 def light_mode(event=NONE):
@@ -164,25 +135,15 @@ def mute_unmute(event=NONE):
         sound_button.configure(text="🔊")
     return muted_app
 
+def start_timer():
+    global timer_on
+
+    if timer_on == False:
+        timer_on = True
+        restart_button.place(x=223, y=545)
+        update_timer()
+    
 pygame.init()
-
-top_frame = Frame(root, bg='#30d30d30d', relief=SUNKEN, borderwidth=1)
-top_frame.pack(side=TOP, anchor='center', fill=X, pady=5)
-
-timer_reference = Label(root, text='Timer', font=('Helvetica', 12), bg='#30d30d30d', fg='white')
-timer_reference.place(x=0, y=80)
-
-score_reference = Label(root, text='Score', font=('Helvetica', 12), bg='#30d30d30d', fg='white')
-score_reference.place(x=741, y=80)
-
-timer_state = 60
-timer_label = Label(top_frame, text=timer_state, font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=1, 
-                    highlightthickness=0)
-timer_label.pack(anchor='w', side='left')
-
-points_label = Label(top_frame, text='0', font=('Roboto', 28), bg='#30d30d30d', fg='white', bd=0, highlightthickness=0)
-points_label.pack(anchor='e', side='right')
-
 
 initial_button = choice(gamepad_buttons)
 
@@ -198,11 +159,6 @@ game_button = Button(root, text=initial_button, font=('Helvetica',32),
                      fg=initial_fgcolor, height=5, width=10, command=new_game_button, 
                      bd=0, highlightthickness=0)
 game_button.place(x=my_x, y=600/2, anchor='center')
-
-
-preview_nxt_btn = Button(root, text=choice(gamepad_buttons), 
-                         font=('Helvetica',16), width=7, height=3,fg='white' )
-preview_nxt_btn.place(x=625, y=250)
 
 #User options buttons. These stay in the bottom left corner of the root win.
 theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16), bg='black',
