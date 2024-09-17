@@ -8,9 +8,5 @@
 - Score Counter
 - Full Shortcuts Support
 - Built-in Timer
-
-## How to Download?
-You can now check the [Releases](https://github.com/GabrielCamara3526/Gamepad-Jumpstart/releases) page and find the best option for your Operating System
-
 # Screenshots
 ![Screenshot from 2024-09-08 15-30-40](https://github.com/user-attachments/assets/aca24619-f25f-41a3-8151-c8d119531011)
