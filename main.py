@@ -4,12 +4,28 @@ from random import choice
 import pygame # type: ignore
 from game_tiles import gamepad_colors, app_bg_theme, gamepad_buttons, correct_sound, wrong_sound, soundless_keys, points_counter
 from root_window import root
+from root_window import a_var, b_var, x_var, y_var
+from root_window import lb_var, rb_var, lt_var, rt_var
 from key_settings import open_sets_win
-from root_window import *
 from defless_ui import timer_state, timer_reference, score_reference, points_label, preview_nxt_btn, timer_label, top_frame
 from switches import timer_on, muted_app, lights_off
-from key_strike import get_keyboard_to_gamepad, count_point
 from theme_choice import light_mode
+
+
+#Used in hit_key to check if pressed key equals current button text
+def get_keyboard_to_gamepad():
+    global a_var, b_var, x_var, y_var
+    global lb_var, rb_var, lt_var, rt_var
+    return {
+        a_var.get(): 'A', b_var.get(): 'B', x_var.get(): 'X', y_var.get(): 'Y',
+        lb_var.get(): 'LB', rb_var.get(): 'RB', lt_var.get(): 'LT', rt_var.get(): 'RT'
+    }
+
+def count_point():
+    global points_counter
+    points_counter += 1
+    points_label.configure(text=points_counter)
+
 
 def change_bgcolor():
     current_text = game_button.cget("text")
