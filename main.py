@@ -1,22 +1,14 @@
 from tkinter import *
 from tkinter import Toplevel, Label
 from random import choice
-import pygame
+import pygame # type: ignore
 from game_tiles import gamepad_colors, app_bg_theme, gamepad_buttons, correct_sound, wrong_sound, soundless_keys, points_counter
 from root_window import root
 from key_settings import open_sets_win
 from root_window import *
 from defless_ui import timer_state, timer_reference, score_reference, points_label, preview_nxt_btn, timer_label, top_frame
-from timer_control import update_timer, end_game
 from switches import timer_on, muted_app, lights_off
-
-def get_keyboard_to_gamepad():
-    global a_var, b_var, x_var, y_var
-    global lb_var, rb_var, lt_var, rt_var
-    return {
-        a_var.get(): 'A', b_var.get(): 'B', x_var.get(): 'X', y_var.get(): 'Y',
-        lb_var.get(): 'LB', rb_var.get(): 'RB', lt_var.get(): 'LT', rt_var.get(): 'RT'
-    }
+from key_strike import get_keyboard_to_gamepad, count_point
 
 def change_bgcolor():
     current_text = game_button.cget("text")
@@ -33,11 +25,6 @@ def change_bgcolor():
         preview_nxt_btn.configure(fg='white')
     elif current_preview_txt in ["A", "B", "X", "Y"]:
         preview_nxt_btn.configure(fg='black')
-
-def count_point():
-    global points_counter
-    points_counter += 1
-    points_label.configure(text=str(points_counter))
 
 #Called on hit_key. Get preview_ntx_btn text and bring it to game_button then set a new random text to preview button.
 def new_game_button():
@@ -65,7 +52,6 @@ def hit_key(event):
     elif keysym not in soundless_keys:
         if not muted_app:
             wrong_sound.play()
-
 
 def restart_game(event):
     global timer_state, points_counter, timer_on
@@ -143,6 +129,26 @@ def start_timer():
         restart_button.place(x=223, y=545)
         update_timer()
     
+
+def end_game():
+    global timer_on
+    root.unbind('<Key>')
+
+    timer_label.config(text="Time's up!")
+    timer_on = False
+
+def update_timer():
+    global timer_state, timer_on
+
+    if timer_state > 0 and timer_on == True:
+        timer_state -= 1
+        timer_label.configure(text=timer_state)
+        root.after(1000, update_timer)
+    elif timer_state == 0:
+        end_game()
+
+        
+
 pygame.init()
 
 initial_button = choice(gamepad_buttons)
