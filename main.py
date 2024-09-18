@@ -132,8 +132,6 @@ def update_timer():
     elif timer_state == 0:
         end_game()
 
-        
-
 pygame.init()
 
 initial_button = choice(gamepad_buttons)
