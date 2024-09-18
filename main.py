@@ -9,6 +9,7 @@ from root_window import *
 from defless_ui import timer_state, timer_reference, score_reference, points_label, preview_nxt_btn, timer_label, top_frame
 from switches import timer_on, muted_app, lights_off
 from key_strike import get_keyboard_to_gamepad, count_point
+from theme_choice import light_mode
 
 def change_bgcolor():
     current_text = game_button.cget("text")
@@ -80,38 +81,6 @@ def slide_right():
     else:
         root.after(100, slide_left)
 
-#Handles the click on theme_changer button. if lights_off is true, sets widgets to brighter color.
-def light_mode(event=NONE):
-    global lights_off
-    if lights_off:
-        root.configure(bg="#d9d9d9")
-        points_label.configure(bg="#d9d9d9")
-        points_label.configure(fg="black")
-        top_frame.configure(bg='#d9d9d9')
-
-        timer_reference.configure(bg='#d9d9d9')
-        timer_reference.configure(fg='black')
-
-        score_reference.configure(bg='#d9d9d9')
-        score_reference.configure(fg='black')
-
-        theme_changer.configure(text='🌙')
-        lights_off = False
-    else:
-        root.configure(bg="#30d30d30d")
-        top_frame.configure(bg='#30d30d30d')
-        points_label.configure(bg="#30d30d30d")
-        points_label.configure(fg="white")
-
-        timer_reference.configure(bg='#30d30d30d')
-        timer_reference.configure(fg='white')
-
-        score_reference.configure(bg='#30d30d30d')
-        score_reference.configure(fg='white')
-
-        theme_changer.configure(text="🔆")
-        lights_off = True
-
 def mute_unmute(event=NONE):
     global muted_app
     muted_app = not muted_app
@@ -165,11 +134,6 @@ game_button = Button(root, text=initial_button, font=('Helvetica',32),
                      fg=initial_fgcolor, height=5, width=10, command=new_game_button, 
                      bd=0, highlightthickness=0)
 game_button.place(x=my_x, y=600/2, anchor='center')
-
-#User options buttons. These stay in the bottom left corner of the root win.
-theme_changer = Button(root, text="🔆", command=light_mode, font=('Roboto', 16), bg='black',
-                       activebackground='#222222')
-theme_changer.place(x=0, y=545)
 
 keys_preference = Button(root, text="⚙️", bg='black', fg='white', activebackground='#222222', activeforeground='white',
                          font=('Roboto', 16), command=lambda: open_sets_win(root, event=NONE))
