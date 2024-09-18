@@ -114,7 +114,6 @@ def start_timer():
         restart_button.place(x=223, y=545)
         update_timer()
     
-
 def end_game():
     global timer_on
     root.unbind('<Key>')
