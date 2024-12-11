@@ -1,5 +1,5 @@
 # Gamepad Jumpstart 
- Gamepad JumpStart is a Desktop Application that allows users to Match Practicable Xbox Gamepad Layout sets to correlative keys on their Keyboard for the purpose of Gaming Rendition Improvements. It should be useful if you intend to learn the mechanics of a game you don't have the Appropriate Gamepad to get used to.
+ Gamepad JumpStart is a Desktop Application that allows users to Match Practicable Xbox Gamepad Layout sets to correlative keys on their Keyboard in order to achieve Gaming rendition Improvements. It's a useful method of learning the mechanics of a game you don't have the Appropriate Gamepad to get used to.
 
 # Features
 - Configurable Key mappings
